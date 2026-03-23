@@ -8,9 +8,16 @@ st.set_page_config(page_title="Update Kelompok Kecil", page_icon="👥", layout=
 # --- 1. DATABASE ANGGOTA (Daftar 4-8 orang per mentor) ---
 data_kelompok = {
     "Pilih Mentor": [],
-    "Mentor Andreas": ["Budi Santoso", "Candra Wijaya", "Dedi Kurniawan", "Eka Putri", "Feri Setiawan"],
-    "Mentor Sarah": ["Gita Permata", "Hana Maria", "Iwan Setiawan", "Joko Susilo", "Kiki Amelia", "Lusi Ana"],
-    "Mentor Yohanes": ["Maman Suherman", "Nana Suryana", "Oki Pratama", "Putri Utami"]
+    "Edy Siregar": ["Aji Eka", "Aji Kezia", "Jhon T", "Michael T", "Noverio"],
+    "Dea": ["Hanny", "Hedva", "Helvin", "Naomi", "Shindy BC"],
+    "Doddy K": ["Andi", "Richard", "Samuel Rizkia", "Samuel Dwiky"],
+    "Martin": ["Ardo", "Archius", "Dustin", "Jefa", "Yunus"],
+    "Nike": ["Eva Sihombing", "Chintya", "Sinta Debataraja", "Sin Thia", "Ruth Angelina"],
+    "Rio": ["Frans Sihombing", "Josep STTS", "Luki", "Ravi"],
+    "Ruth H": ["Cindy", "Junita", "Maria", "Peggy", "Vina", "Yustina"],
+    "Saida": ["Christine", "Jelita", "Mariany", "Messya", "Rachel", "Sandra", "Yosi"],
+    "Sylva": ["Anggie", "Angelin BC", "Erlin Law", "Helmi", "Kezia", "Murni", "Sarah"],
+    "Uhin": ["Mattew", "Oki", "Steven", "Zulfan"]
 }
 
 # --- 2. KONEKSI ---
@@ -22,7 +29,7 @@ st.info("Pilih nama Anda, lalu isi update untuk setiap anggota di bawah ini.")
 # --- 3. PILIHAN MENTOR ---
 col1, col2 = st.columns(2)
 with col1:
-    mentor = st.selectbox("Nama Mentor/Pemimpin", options=list(data_kelompok.keys()))
+    mentor = st.selectbox("Nama Mentor/Pemimpin Kelompok", options=list(data_kelompok.keys()))
 with col2:
     tanggal = st.date_input("Tanggal Pertemuan", date.today())
 
@@ -43,7 +50,7 @@ if mentor != "Pilih Mentor":
                 with c1:
                     hadir = st.selectbox(f"Kehadiran", ["Hadir", "Izin", "Sakit", "Alpa"], key=f"h_{nama}")
                 with c2:
-                    kondisi = st.select_slider(f"Spritual", 
+                    kondisi = st.select_slider(f"Kondisi Spritual", 
                                              options=["Kritis", "Lemah", "Stabil", "Bertumbuh", "Baik"], 
                                              value="Stabil", key=f"s_{nama}")
                 with c3:
