@@ -61,7 +61,7 @@ if mentor != "Pilih Mentor":
                     "Tanggal": str(tanggal),
                     "Mentor": mentor,
                     "Anggota": nama,
-                    "Jenis Followup": meetup,
+                    "Jenis Followup": hadir,
                     "Kondisi": kondisi,
                     "Catatan": catatan
                 })
