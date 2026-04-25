@@ -1,3 +1,7 @@
 streamlit
 st-gsheets-connection
+<<<<<<< HEAD
 pandas
+=======
+pandas
+>>>>>>> 34ae202743bd9385715ac76f143a6810b27f688d
