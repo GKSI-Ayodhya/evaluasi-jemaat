@@ -93,10 +93,10 @@ if mentor != "Pilih Mentor":
             with ce3:
                 c_extra = st.text_input("Catatan/Pokok Doa", key="c_ex")
 
-            st.divider()
-            submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
+        st.divider()
+        submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
 
-if submit:
+    if submit:
         # TENTUKAN NAMA EXTRA JEMAAT
         nama_extra = nama_manual if nama_manual else (pilihan_nama if pilihan_nama != "-- Pilih / Ketik Baru --" else None)
         
@@ -116,7 +116,7 @@ if submit:
         st.divider()
         submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
 
-if submit:
+    if submit:
         try:
             # Ambil data lama dari Google Sheets
             existing_data = conn.read(worksheet="Data_Update", ttl=0)
