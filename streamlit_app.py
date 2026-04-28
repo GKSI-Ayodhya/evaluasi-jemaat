@@ -96,7 +96,7 @@ if mentor != "Pilih Mentor":
             st.divider()
             submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
 
-    if submit:
+if submit:
         # TENTUKAN NAMA EXTRA JEMAAT
         nama_extra = nama_manual if nama_manual else (pilihan_nama if pilihan_nama != "-- Pilih / Ketik Baru --" else None)
         
