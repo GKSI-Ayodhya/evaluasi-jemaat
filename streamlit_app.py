@@ -66,8 +66,55 @@ if mentor != "Pilih Mentor":
             "Kondisi": kondisi,
             "Catatan": catatan
             })
+        # ... (akhir dari loop jemaat grup) ...
+        # Pastikan kode di bawah ini sejajar dengan kata 'for' di atasnya
+
+        st.write("---")
+        with st.expander("➕ Tambahkan Update untuk Jemaat di Luar Grup Anda (Opsional)"):
+            st.info("Gunakan bagian ini jika ada jemaat lain yang ingin Anda update kondisinya.")
+            
+            # Ambil semua jemaat untuk pilihan
+            semua_jemaat = []
+            for anggota_list in data_kelompok.values():
+                semua_jemaat.extend(anggota_list)
+            semua_jemaat = sorted(list(set(semua_jemaat)))
+
+            c_extra_1, c_extra_2 = st.columns([1, 1])
+            with c_extra_1:
+                pilihan_nama = st.selectbox("Pilih Nama Jemaat:", ["-- Pilih / Ketik Baru --"] + semua_jemaat, key="pilih_extra")
+            with c_extra_2:
+                nama_manual = st.text_input("Atau Ketik Nama Baru:", key="nama_manual")
+
+            ce1, ce2, ce3 = st.columns([2, 2, 4])
+            with ce1:
+                h_extra = st.selectbox("Jenis Followup", ["Meetup", "By Call", "By Chat/Whatsapp", "None"], key="h_ex")
+            with ce2:
+                k_extra = st.select_slider("Kondisi Spiritual", options=["Kritis", "Lemah", "Stabil", "Bertumbuh", "Baik"], value="Stabil", key="k_ex")
+            with ce3:
+                c_extra = st.text_input("Catatan/Pokok Doa", key="c_ex")
+
         st.divider()
         submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
+
+    if submit:
+        # TENTUKAN NAMA EXTRA JEMAAT
+        nama_extra = nama_manual if nama_manual else (pilihan_nama if pilihan_nama != "-- Pilih / Ketik Baru --" else None)
+        
+        # Jika ada nama extra, masukkan ke daftar update sebelum disimpan
+        if nama_extra:
+            list_update.append({
+                "Tanggal": str(tanggal),
+                "Mentor": f"{mentor} (Cross-Update)",
+                "Anggota": nama_extra,
+                "Jenis Followup": h_extra,
+                "Kondisi Spiritual": k_extra,
+                "Catatan": c_extra
+            })
+            
+        
+            # ... (proses simpan seperti biasa) ...
+            st.divider()
+            submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
 
     if submit:
         try:
