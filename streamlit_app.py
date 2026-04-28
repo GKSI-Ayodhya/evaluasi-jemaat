@@ -116,7 +116,7 @@ if mentor != "Pilih Mentor":
         st.divider()
         submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
 
-    if submit:
+if submit:
         try:
             # Ambil data lama dari Google Sheets
             existing_data = conn.read(worksheet="Data_Update", ttl=0)
