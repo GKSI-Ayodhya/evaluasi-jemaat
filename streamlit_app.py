@@ -112,36 +112,32 @@ if mentor != "Pilih Mentor":
     with st.form("form_massal", clear_on_submit=True):
         daftar_anggota = data_kelompok[mentor]
         list_update = []
-
+        
         st.subheader(f"Update Anggota Kelompok {mentor}")
         
-        # Membuat baris input untuk SETIAP anggota
         for nama in daftar_anggota:
             with st.expander(f"📍 Update untuk: {nama}", expanded=True):
                 c1, c2, c3 = st.columns([2, 2, 4])
                 with c1:
-                    hadir = st.selectbox(f"Jenis Followup", ["Meetup", "By Call", "By Chat/Whatapps", "None"], key=f"h_{nama}")
+                    hadir = st.selectbox(f"Jenis Followup", ["Meetup", "By Call", "By Chat/Whatsapp", "None"], key=f"h_{nama}")
                 with c2:
-                    kondisi = st.select_slider(f"Kondisi Spritual", 
-                                            options=["Kritis", "Lemah", "Stabil", "Bertumbuh", "Baik"], 
-                                            value="Stabil", key=f"s_{nama}")
+                    kondisi = st.select_slider(f"Kondisi Spiritual", options=["Kritis", "Lemah", "Stabil", "Bertumbuh", "Baik"], value="Stabil", key=f"s_{nama}")
                 with c3:
                     catatan = st.text_input(f"Catatan/Pokok Doa", key=f"c_{nama}")
                 
-                # Simpan data sementara ke dalam list
                 list_update.append({
                     "Tanggal": str(tanggal),
                     "Mentor": mentor,
                     "Anggota": nama,
                     "Jenis Followup": hadir,
-                    "Kondisi": kondisi,
+                    "Kondisi Spiritual": kondisi,
                     "Catatan": catatan
                 })
+        
+        st.divider()
+        submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
 
-    st.divider()
-    submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
-
-if submit:
+    if submit:
     try:
         # Ambil data lama dari Google Sheets
         existing_data = conn.read(worksheet="Data_Update", ttl=0)
