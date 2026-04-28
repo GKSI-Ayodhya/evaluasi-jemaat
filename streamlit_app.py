@@ -138,22 +138,22 @@ if mentor != "Pilih Mentor":
         submit = st.form_submit_button("Simpan Semua Update Anggota", type="primary")
 
     if submit:
-    try:
-        # Ambil data lama dari Google Sheets
-        existing_data = conn.read(worksheet="Data_Update", ttl=0)
-        
-        # Ubah list update tadi menjadi DataFrame
-        new_data_df = pd.DataFrame(list_update)
-        
-        # Gabungkan data lama dengan data baru (semua anggota sekaligus)
-        updated_df = pd.concat([existing_data, new_data_df], ignore_index=True)
-        
-        # Update ke Google Sheets
-        conn.update(worksheet="Data_Update", data=updated_df)
-        
-        st.success(f"✅ Berhasil! Update untuk {len(list_update)} anggota telah tersimpan.")
-        st.balloons()
-    except Exception as e:
-        st.error(f"Gagal menyimpan: Pastikan Tab 'Data_Update' sudah ada di Google Sheets. Error: {e}")
+        try:
+            # Ambil data lama dari Google Sheets
+            existing_data = conn.read(worksheet="Data_Update", ttl=0)
+            
+            # Ubah list update tadi menjadi DataFrame
+            new_data_df = pd.DataFrame(list_update)
+            
+            # Gabungkan data lama dengan data baru (semua anggota sekaligus)
+            updated_df = pd.concat([existing_data, new_data_df], ignore_index=True)
+            
+            # Update ke Google Sheets
+            conn.update(worksheet="Data_Update", data=updated_df)
+            
+            st.success(f"✅ Berhasil! Update untuk {len(list_update)} anggota telah tersimpan.")
+            st.balloons()
+        except Exception as e:
+            st.error(f"Gagal menyimpan: Pastikan Tab 'Data_Update' sudah ada di Google Sheets. Error: {e}")
 else:
     st.warning("Silakan pilih Nama Mentor untuk memunculkan daftar anggota.")
