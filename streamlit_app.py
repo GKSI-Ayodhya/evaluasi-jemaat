@@ -49,7 +49,7 @@ if mentor != "Pilih Mentor":
             with st.expander(f"📍 Update untuk: {nama}", expanded=True):
                 c1, c2, c3 = st.columns([2, 2, 4])
             with c1:
-                hadir = st.selectbox(f"Jenis Followup", ["Meetup", "By Call", "By Chat/Whatapps", "Tidak ada respon"], key=f"h_{nama}")
+                hadir = st.selectbox(f"Jenis Followup", ["Meetup", "By Call", "By Chat/Whatapps", "Belum difollowup"], key=f"h_{nama}")
             with c2:
                 kondisi = st.select_slider(f"Kondisi Spritual", 
                 options=["Kritis", "Lemah", "Stabil", "Bertumbuh", "Baik"], 
